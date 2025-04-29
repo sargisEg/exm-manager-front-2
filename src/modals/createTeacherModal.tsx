@@ -1,0 +1,173 @@
+import {Dialog, DialogPanel, DialogTitle, Transition, TransitionChild} from '@headlessui/react'
+import {Fragment, useState} from 'react'
+import {Input} from "../components/imput";
+import {Button} from "../components/button";
+import {CreateStudentRequest, CreateTeacherRequest} from "../shared/models";
+
+interface CreateTeacherModalProps {
+    open: boolean;
+    setOpenModal: (val: boolean) => void;
+    onCreate: (data: CreateTeacherRequest) => void;
+}
+
+function isValidEmail(email: string) {
+    return /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm.test(email);
+}
+
+export default function CreateTeacherModal({open, setOpenModal, onCreate}: CreateTeacherModalProps) {
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phone, setPhone] = useState('');
+
+    const [error, setError] = useState<string | null>(null);
+
+    const handleSubmit = () => {
+        if (!name.trim()) {
+            setError('Name is required.');
+            return;
+        }
+        if (!surname.trim()) {
+            setError('Surname is required.');
+            return;
+        }
+        if (!email.trim()) {
+            setError('Email is required.');
+            return;
+        }
+        if (!password.trim()) {
+            setError('Password is required.');
+            return;
+        }
+        if (!phone.trim()) {
+            setError('Phone number is required.');
+            return;
+        }
+
+        setError(null);
+        onCreate({
+            fullName: name + " " + surname,
+            email: email,
+            phone: phone,
+            password: password
+        });
+
+        setName('');
+        setSurname('');
+        setEmail('');
+        setPassword('');
+        setPhone('');
+        setOpenModal(false);
+    }
+
+    const handleClose = () => {
+        setOpenModal(false);
+        setName('');
+        setSurname('');
+        setEmail('');
+        setPassword('');
+        setPhone('');
+    }
+
+    return (
+        <Transition show={open} as={Fragment}>
+            <Dialog as="div" className="relative z-50" onClose={handleClose}>
+                <TransitionChild
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm"/>
+                </TransitionChild>
+
+                <div className="fixed inset-0 flex items-center justify-center p-4">
+                    <TransitionChild
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 scale-95"
+                        enterTo="opacity-100 scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 scale-100"
+                        leaveTo="opacity-0 scale-95"
+                    >
+                        <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+                            <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
+                                Add New Teacher
+                            </DialogTitle>
+                            <div className="flex flex-col gap-4">
+                                <Input
+                                    required
+                                    type="text"
+                                    placeholder="Name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    className="bg-[#f9f9f9] text-black"
+                                />
+                                <Input
+                                    required
+                                    type="text"
+                                    placeholder="Surname"
+                                    value={surname}
+                                    onChange={(e) => setSurname(e.target.value)}
+                                    className="bg-[#f9f9f9] text-black"
+                                />
+                                <Input
+                                    required
+                                    type="email"
+                                    placeholder="Email"
+                                    value={email}
+                                    onChange={(e) => {
+                                        if (!isValidEmail(e.target.value)) {
+                                            setError('Email is invalid.');
+                                        } else {
+                                            setError(null);
+                                        }
+                                        setEmail(e.target.value);
+                                    }}
+                                    className="bg-[#f9f9f9] text-black"
+                                />
+                                <Input
+                                    required
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="bg-[#f9f9f9] text-black"
+                                />
+                                <Input
+                                    required
+                                    type="number"
+                                    placeholder="Phone number"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    className="bg-[#f9f9f9] text-black"
+                                />
+                            </div>
+
+
+                            {error &&
+                                <div
+                                    className="mt-4 px-4 py-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm">
+                                    {error}
+                                </div>
+                            }
+                            <div className="mt-6 flex justify-end gap-4">
+                                <Button onClick={handleClose} variant="cancel">
+                                    Cancel
+                                </Button>
+                                <Button type="submit" onClick={handleSubmit}>
+                                    Create
+                                </Button>
+                            </div>
+                        </DialogPanel>
+                    </TransitionChild>
+                </div>
+            </Dialog>
+        </Transition>
+    )
+}

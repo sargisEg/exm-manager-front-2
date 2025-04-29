@@ -1,0 +1,251 @@
+.RaMenu-closed {
+  .MuiMenuItem-root {
+    transition        : all 0.3s ease;
+    padding           : 15px 8px !important;
+
+    .MuiListItemIcon-root {
+      padding-right: 0 !important;
+    }
+  }
+
+  .MuiListItem-root {
+    height            : 46px;
+    transition        : all 0.3s ease;
+    padding           : 15px 8px !important;
+
+    .MuiListItemText-root,
+    .expandMore,
+    .expand {
+      display: none;
+    }
+  }
+
+  .MuiCollapse-root {
+    display: none;
+  }
+}
+
+.RaMenu-open {
+  width: 220px !important;
+}
+
+.hide-sidebar {
+  display: none !important;
+}
+
+.sideBar-block {
+  max-height: 100% !important;
+  margin-top  : 75px !important;
+  position     : fixed !important;
+  z-index      : 9999999 !important;
+  top          : 0;
+  transition   : all 0.3s ease;
+  border-right : 1px solid #F1F1F2 !important;
+  background   : #F9F9F9 !important;
+  bottom       : 0;
+  border-radius: unset !important;
+  position     : absolute;
+  outline: none;
+  overflow-y: auto;
+
+  .MuiCollapse-entered {
+    min-height: auto !important;
+  }
+
+  .MuiMenuItem-root,
+  .MuiListItem-root {
+    margin-bottom   : 0;
+    min-height      : auto !important;
+    cursor          : pointer;
+    color           : #5E6278 !important;
+    font-size       : 14px;
+    font-style      : normal;
+    font-weight     : 600;
+    line-height     : 14px;
+    padding         : 15px 8px;
+    border-radius   : 8px;
+    background-color: transparent !important;
+    justify-content : flex-start;
+
+    .expand,
+    .expandMore {
+      width : 10px !important;
+      height: 10px !important;
+    }
+
+    .expandMore {
+      path {
+        fill: #1B84FF !important;
+      }
+    }
+
+    .MuiListItemIcon-root {
+      min-width    : unset !important;
+      padding-right: 9px;
+
+      svg {
+        width : 16px;
+        height: 16px;
+
+        path {
+          fill: #5E6278 !important;
+        }
+      }
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    .MuiListItemText-root {
+      color       : #5E6278 !important;
+      padding-left: 9px !important;
+      margin      : 0;
+      font-size   : 14px;
+      font-style  : normal;
+      font-weight : 600;
+      line-height : 14px;
+
+      &:hover {
+        color           : #1B84FF !important;
+        background-color: transparent;
+        cursor          : pointer;
+
+        .MuiListItemIcon-root {
+          svg {
+            width : 16px;
+            height: 16px;
+
+            path {
+              fill: #1B84FF !important;
+            }
+          }
+        }
+      }
+    }
+
+    svg {
+      width : 16px;
+      height: 16px;
+
+      path {
+        fill: #5E6278 !important;
+      }
+    }
+
+    &:hover {
+      color: #1B84FF !important;
+
+      .MuiListItemText-root {
+        color           : #1B84FF !important;
+        background-color: transparent;
+
+        .MuiListItemIcon-root {
+          svg {
+            width : 16px;
+            height: 16px;
+
+            path {
+              fill: #1B84FF !important;
+            }
+          }
+        }
+      }
+
+      svg {
+        path {
+          fill: #1B84FF !important;
+        }
+      }
+    }
+  }
+
+  .MuiCollapse-wrapperInner {
+    display        : flex;
+    padding        : 0px 24px 0px 24px;
+    flex-direction : column;
+    justify-content: center;
+    align-items    : flex-start;
+    gap            : 1px;
+    align-self     : stretch;
+
+    .MuiList-root {
+      padding         : 0 !important;
+      width           : 100%;
+      background-color: transparent;
+      border-radius   : unset;
+      box-shadow      : unset;
+    }
+
+    .sub-menu {
+      font-size    : 13px !important;
+      padding      : 12px 9px !important;
+      align-items  : center;
+      border-radius: 8px;
+      line-height  : 18px;
+
+      &:hover {
+        color: #1B84FF !important;
+      }
+    }
+
+    .RaMenuItemLink-active {
+      align-items     : center;
+      border-radius   : 8px;
+      background-color: #ffffff !important;
+      box-shadow      : 0px 2px 6px 0px rgba(0, 0, 0, 0.07);
+      line-height     : 18px;
+    }
+  }
+
+  .RaMenuItemLink-active,
+  .active {
+    cursor: pointer;
+    color : #1B84FF !important;
+
+    svg {
+      g {
+        path {
+          fill: #1B84FF !important;
+        }
+      }
+
+      path {
+        fill: #1B84FF !important;
+      }
+    }
+
+    .MuiListItemText-root {
+      color: #1B84FF !important;
+
+    }
+
+    .MuiListItemIcon-root {
+      svg {
+        width : 16px;
+        height: 16px;
+
+        path {
+          fill: #1B84FF !important;
+        }
+      }
+    }
+  }
+}
+
+.sideBar-block-hide {
+  display: none;
+}
+
+.RaLayout-content {
+  transition        : all 0.3s ease;
+  background-color  : white !important;
+  margin            : 0;
+  padding-left      : 225px !important;
+  padding-top       : 75px !important;
+  z-index: unset !important;
+}
+
+.RaMenu-closed+.RaLayout-content {
+  padding-left: 55px !important;
+}
