@@ -1,11 +1,9 @@
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/card";
-import {Apartment, Person, Group, School} from '@mui/icons-material'
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
 import {useEffect, useState} from "react";
 import {CourseResponse, ExamResultResponse, GroupResponse} from "../../shared/models";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
-import {number} from "react-admin";
 
 export default function StudentDashboard() {
     const [loading, setLoading] = useState(false);
@@ -66,7 +64,7 @@ export default function StudentDashboard() {
                                 </CardHeader>
                                 <CardContent className="mt-8">
                                     {/*<div className="text-m font-medium mb-5">Միջին գնահատական - 85</div>*/}
-                                    <TableContainer>
+                                    <TableContainer className="rounded-lg border border-[#f9f9f9]">
                                         <Table sx={{minWidth: 650}}>
                                             <TableHead className="bg-[#212960]">
                                                 <TableRow>

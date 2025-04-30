@@ -28,23 +28,23 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
 
     const handleSubmit = () => {
         if (!name.trim()) {
-            setError('Name is required.');
+            setError('Լրացրեք անունը');
             return;
         }
         if (!surname.trim()) {
-            setError('Surname is required.');
+            setError('Լրացրեք ազգանունը');
             return;
         }
         if (!email.trim()) {
-            setError('Email is required.');
+            setError('Լրացրեք էլ. հասցեն');
             return;
         }
         if (!password.trim()) {
-            setError('Password is required.');
+            setError('Լրացրեք գաղտնաբառը');
             return;
         }
         if (!phone.trim()) {
-            setError('Phone number is required.');
+            setError('Լրացրեք հեռախոսահամարը');
             return;
         }
 
@@ -101,13 +101,13 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Add New Student
+                                Ավելացնել նոր ուսանող
                             </DialogTitle>
                             <div className="flex flex-col gap-4">
                                 <Input
                                     required
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="Անուն"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="bg-[#f9f9f9] text-black"
@@ -115,7 +115,7 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
                                 <Input
                                     required
                                     type="text"
-                                    placeholder="Surname"
+                                    placeholder="Ազգանուն"
                                     value={surname}
                                     onChange={(e) => setSurname(e.target.value)}
                                     className="bg-[#f9f9f9] text-black"
@@ -123,11 +123,11 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
                                 <Input
                                     required
                                     type="email"
-                                    placeholder="Email"
+                                    placeholder="Էլ. հասցե"
                                     value={email}
                                     onChange={(e) => {
                                         if (!isValidEmail(e.target.value)) {
-                                            setError('Email is invalid.');
+                                            setError('Անվավեր էլ. հասցե');
                                         } else {
                                             setError(null);
                                         }
@@ -138,7 +138,7 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
                                 <Input
                                     required
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Գաղտնաբառ"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     className="bg-[#f9f9f9] text-black"
@@ -146,7 +146,7 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
                                 <Input
                                     required
                                     type="number"
-                                    placeholder="Phone number"
+                                    placeholder="Հեռախոսահամար"
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}
                                     className="bg-[#f9f9f9] text-black"
@@ -162,10 +162,10 @@ export default function CreateStudentModal({open, setOpenModal, onCreate, subgro
                             }
                             <div className="mt-6 flex justify-end gap-4">
                                 <Button onClick={handleClose} variant="cancel">
-                                    Cancel
+                                    Չեղարկել
                                 </Button>
                                 <Button type="submit" onClick={handleSubmit}>
-                                    Create
+                                    Ավելացնել
                                 </Button>
                             </div>
                         </DialogPanel>

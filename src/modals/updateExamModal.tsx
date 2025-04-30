@@ -1,27 +1,12 @@
-import {
-    Dialog,
-    DialogPanel,
-    DialogTitle, Listbox,
-    ListboxButton, ListboxOption,
-    ListboxOptions,
-    Transition,
-    TransitionChild
-} from '@headlessui/react'
+import {Dialog, DialogPanel, DialogTitle, Transition, TransitionChild} from '@headlessui/react'
 import {forwardRef, Fragment, useEffect, useState} from 'react'
 import {Input} from "../components/imput";
 import {Button} from "../components/button";
-import {
-    CreateExamRequest,
-    ExamResponse,
-    ExamType,
-    examTypeLabels,
-    SubgroupResponse,
-    UpdateExamRequest
-} from "../shared/models";
+import {ExamResponse, UpdateExamRequest} from "../shared/models";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {Minimize} from "@mui/icons-material"
-import {addDays, addHours, addMinutes, getHours, getMinutes, getTime, setHours, setMinutes} from 'date-fns';
+import {addDays, addHours, addMinutes, setHours, setMinutes} from 'date-fns';
 
 interface UpdateExamModalProps {
     open: boolean;
@@ -51,27 +36,27 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
 
     const handleSubmit = () => {
         if (!title.trim()) {
-            setError('Please enter a title.');
+            setError('Լրացրեք անվանումը։');
             return;
         }
         if (!location.trim()) {
-            setError('Please enter a location.');
+            setError('Լրացրեք վայրը։');
             return;
         }
         if (!date) {
-            setError('Please enter a date.');
+            setError('Լրացրեք ամսաթիվը');
             return;
         }
         if (!startTime) {
-            setError('Please enter a startTime.');
+            setError('Լրացրեք սկսելու ժամը');
             return;
         }
         if (!endTime) {
-            setError('Please enter a time.');
+            setError('Լրացրեք ավարտելու ժամը');
             return;
         }
         if (!maxPoints) {
-            setError('Please enter a max points.');
+            setError('Լրացրեք առավելագույն միավորները');
             return;
         }
 
@@ -179,7 +164,7 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Ավելացնել նոր քննություն
+                                Փոփոխել Քննությունը
                             </DialogTitle>
 
                             <div className="flex flex-col gap-4">
@@ -202,7 +187,7 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
                                     isClearable
                                     selected={date}
                                     onChange={(date) => setDate(date ? date : undefined)}
-                                    placeholderText="Date"
+                                    placeholderText="Ամսաթիվ"
                                     dateFormat="MMMM d, yyyy"
                                     minDate={addDays(new Date(), 3)}
                                     filterDate={isWeekday}
@@ -217,11 +202,11 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
                                             setStartTime(date ? date : undefined);
                                             setEndTime(undefined);
                                         }}
-                                        placeholderText="Start Time"
+                                        placeholderText="Սկիզբ"
                                         dateFormat="HH:mm"
                                         timeFormat="HH:mm"
                                         timeIntervals={5}
-                                        timeCaption="Time"
+                                        timeCaption="Ժամ"
                                         showTimeSelectOnly
                                         minTime={setHours(setMinutes(new Date(), 0), 8)}
                                         maxTime={setHours(setMinutes(new Date(), 0), 18)}
@@ -234,11 +219,11 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
                                         showTimeSelect
                                         selected={endTime}
                                         onChange={(date) => setEndTime(date ? date : undefined)}
-                                        placeholderText="End Time"
+                                        placeholderText="Ավարդ"
                                         dateFormat="HH:mm"
                                         timeFormat="HH:mm"
                                         timeIntervals={5}
-                                        timeCaption="ադսսադ"
+                                        timeCaption="Ժամ"
                                         showTimeSelectOnly
                                         minTime={startTime ? startTime : setHours(setMinutes(new Date(), 0), 8)}
                                         maxTime={setHours(setMinutes(new Date(), 0), 18)}
@@ -265,12 +250,12 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
                                     onClick={handleClose}
                                     variant="cancel"
                                 >
-                                    Cancel
+                                    Չեղարկել
                                 </Button>
                                 <Button
                                     onClick={handleSubmit}
                                 >
-                                    Update
+                                    Փոփոխել
                                 </Button>
                             </div>
                         </DialogPanel>

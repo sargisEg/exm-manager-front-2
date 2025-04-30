@@ -18,19 +18,19 @@ export default function CreateGroupModal({open, onClose, onCreate}: CreateGroupM
 
     const handleSubmit = () => {
         if (!name.trim()) {
-            setError('Name is required.');
+            setError('Լրացրեք անունը');
             return;
         }
         if (!startYear) {
-            setError('Start Year is required.');
+            setError('Լրացրեք տարին');
             return;
         }
         if (!endYear) {
-            setError('End Year is required.');
+            setError('Լրացրեք տարին');
             return;
         }
         if (startYear > endYear) {
-            setError('Start Year cannot be after End Year.');
+            setError('Անվավեր տարի');
             return;
         }
 
@@ -77,13 +77,13 @@ export default function CreateGroupModal({open, onClose, onCreate}: CreateGroupM
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Create New Group
+                                Ստեղծել Նոր Խումբ
                             </DialogTitle>
                             <div className="flex flex-col gap-4">
                                 <Input
                                     required
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="Անվանում"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="bg-[#f9f9f9] text-black"
@@ -91,7 +91,7 @@ export default function CreateGroupModal({open, onClose, onCreate}: CreateGroupM
                                 <Input
                                     required
                                     type="number"
-                                    placeholder="Start Year"
+                                    placeholder="Սկիզբ"
                                     value={startYear}
                                     onChange={(e) => setStartYear(parseInt(e.target.value))}
                                     className="bg-[#f9f9f9] text-black"
@@ -99,7 +99,7 @@ export default function CreateGroupModal({open, onClose, onCreate}: CreateGroupM
                                 <Input
                                     required
                                     type="number"
-                                    placeholder="End Year"
+                                    placeholder="Ավարտ"
                                     value={endYear}
                                     onChange={(e) => setEndYear(parseInt(e.target.value))}
                                     className="bg-[#f9f9f9] text-black"
@@ -117,13 +117,13 @@ export default function CreateGroupModal({open, onClose, onCreate}: CreateGroupM
                                     onClick={handleClose}
                                     variant="cancel"
                                 >
-                                    Cancel
+                                    Չեղարկել
                                 </Button>
                                 <Button
                                     type="submit"
                                     onClick={handleSubmit}
                                 >
-                                    Create
+                                    Ստեղծել
                                 </Button>
                             </div>
                         </DialogPanel>

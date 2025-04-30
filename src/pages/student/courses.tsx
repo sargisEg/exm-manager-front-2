@@ -1,15 +1,13 @@
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/card";
-import {Apartment, Person, Group, School, Clear, Download, Upload} from '@mui/icons-material'
-import {ExpandMore} from "@mui/icons-material";
+import {Download, ExpandMore} from '@mui/icons-material'
 import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react'
-import {Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper} from '@mui/material'
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {CourseResponse, ExamResultResponse, GroupResponse, MaterialResponse} from "../../shared/models";
+import {CourseResponse, ExamResultResponse, examTypeLabels, GroupResponse, MaterialResponse} from "../../shared/models";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
 import moment from "moment";
-import {number} from "react-admin";
 import {Button} from "../../components/button";
 
 export default function StudentCourses() {
@@ -40,12 +38,12 @@ export default function StudentCourses() {
     const courses1: CourseResponse[] = Array.from(new Map(
         examResults.map(er => [er.exam.course.id, er.exam.course])
     ).values())
-        .filter((course: CourseResponse) => (course.semester === parseInt(yearNumber)));
+        .filter((course: CourseResponse) => (course.semester === (parseInt(yearNumber) * 2 - 1)));
 
     const courses2: CourseResponse[] = Array.from(new Map(
         examResults.map(er => [er.exam.course.id, er.exam.course])
     ).values())
-        .filter((course: CourseResponse) => (course.semester === parseInt(yearNumber) + 1));
+        .filter((course: CourseResponse) => (course.semester === (parseInt(yearNumber) * 2)));
 
     const courseResults: Record<string, number> = {};
 
@@ -119,7 +117,7 @@ export default function StudentCourses() {
                                                                     className={(index % 2 === 0) ? "bg-[#212960]/30" : ""}>
                                                                     <TableCell>{examResult.exam.title}</TableCell>
                                                                     <TableCell
-                                                                        align="right">{examResult.exam.type}</TableCell>
+                                                                        align="right">{examTypeLabels[examResult.exam.type]}</TableCell>
                                                                     <TableCell
                                                                         align="right">{moment(examResult.exam.startDate).format("DD.MM.YYYY")}</TableCell>
                                                                     <TableCell
@@ -201,7 +199,7 @@ export default function StudentCourses() {
                                                                     className={(index % 2 === 0) ? "bg-[#212960]/30" : ""}>
                                                                     <TableCell>{examResult.exam.title}</TableCell>
                                                                     <TableCell
-                                                                        align="right">{examResult.exam.type}</TableCell>
+                                                                        align="right">{examTypeLabels[examResult.exam.type]}</TableCell>
                                                                     <TableCell
                                                                         align="right">{moment(examResult.exam.startDate).format("DD.MM.YYYY")}</TableCell>
                                                                     <TableCell

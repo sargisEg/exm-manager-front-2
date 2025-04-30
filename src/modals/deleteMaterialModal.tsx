@@ -35,16 +35,16 @@ export const DeleteMaterialModal = ({ open, setOpenModal, onRemove, idToRemove }
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Delete Material
+                                Ջնջել Նյութը
                             </DialogTitle>
 
                             <Description className="mt-2 text-sm text-gray-900">
-                                Are you sure that you want to delete a material?
+                                Ուզու՞մ եք ջնջել նյութը։
                             </Description>
 
                             <div className="mt-6 flex justify-end gap-4">
-                                <Button variant="cancel" onClick={() => setOpenModal(false)}>Cancel</Button>
-                                <Button variant="remove" onClick={handleSubmit}>Delete</Button>
+                                <Button variant="cancel" onClick={() => setOpenModal(false)}>Չեղարկել</Button>
+                                <Button variant="remove" onClick={handleSubmit}>Ջնջել</Button>
                             </div>
                         </DialogPanel>
                     </TransitionChild>

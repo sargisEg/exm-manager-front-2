@@ -1,21 +1,10 @@
-import {More, LockReset, PersonAddAlt1, PersonRemove} from '@mui/icons-material'
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination} from '@mui/material'
+import {More} from '@mui/icons-material'
 import {Button} from "../../components/button";
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {
-    CourseResponse,
-    CreateStudentRequest,
-    CreateTeacherRequest,
-    GroupResponse,
-    Page, TeacherResponse,
-    UserResponse
-} from "../../shared/models";
+import {CourseResponse, GroupResponse, TeacherResponse, UserResponse} from "../../shared/models";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
-import {Pagination} from "react-admin";
-import CreateStudentModal from "../../modals/createStudentModal";
-import CreateTeacherModal from "../../modals/createTeacherModal";
 import {Card, CardHeader, CardTitle} from "../../components/card";
 
 export default function AdminTeacherDetails() {
@@ -43,14 +32,18 @@ export default function AdminTeacherDetails() {
 
     const groupData: Record<string, GroupResponse> = {};
     const coursesData: Record<string, CourseResponse[]> = {};
-    courses?.map((course: CourseResponse) => {
-        if (!groupData[course.group.id]) {
-            groupData[course.group.id] = course.group;
+    courses?.forEach((course: CourseResponse) => {
+        const now = new Date();
+        if(course.semester === (course.group.academicYear * 2 - ((now.getMonth() < 9 && now.getMonth() > 1) ? 0 : 1))) {
+            if (!groupData[course.group.id]) {
+                groupData[course.group.id] = course.group;
+            }
+
+            if (!coursesData[course.group.id]) {
+                coursesData[course.group.id] = [];
+            }
+            coursesData[course.group.id].push(course);
         }
-        if (!coursesData[course.group.id]) {
-            coursesData[course.group.id] = [];
-        }
-        coursesData[course.group.id].push(course);
     })
 
     return (
@@ -91,7 +84,12 @@ export default function AdminTeacherDetails() {
                                     </Card>
                                     <div className="grid gap-12 md:grid-cols-4 mb-8">
                                         {
-                                            coursesData[key].map((course: CourseResponse) => (
+                                            coursesData[key]
+                                                .filter((course: CourseResponse) => {
+                                                    const now = new Date();
+                                                    return course.semester === (groupData[key].academicYear * 2 - ((now.getMonth() < 9 && now.getMonth() > 1) ? 0 : 1));
+                                                })
+                                                .map((course: CourseResponse) => (
                                                 <Card className="bg-[#212960]/80">
                                                     <CardHeader>
                                                         <CardTitle>

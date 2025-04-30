@@ -98,7 +98,7 @@ export default function TeacherExamGrade() {
                                                     return;
                                                 }
                                                 if (value < 0) value = 0;
-                                                if (value > 20) value = 20;
+                                                if (value > exam?.maxPoints) value = exam?.maxPoints;
 
                                                 input.value = value.toString();
                                             }}
@@ -108,7 +108,7 @@ export default function TeacherExamGrade() {
                                             }}
                                         />
                                     </TableCell>
-                                    <TableCell align="right">20</TableCell>
+                                    <TableCell align="right">{exam.maxPoints}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

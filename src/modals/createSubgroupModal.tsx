@@ -35,16 +35,16 @@ export const CreateSubgroupModal = ({ open, setOpenModal, onCreate }: { open: bo
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Create New Subgroup
+                                Ստեղծել Նոր Ենթախումբ
                             </DialogTitle>
 
                             <Description className="mt-2 text-sm text-gray-900">
-                                Are you sure that you want to create a new subgroup?
+                                Ուզու՞մ եք ստեղծել նոր ենթախումբ։
                             </Description>
 
                             <div className="mt-6 flex justify-end gap-4">
-                                <Button variant="cancel" onClick={() => setOpenModal(false)}>Cancel</Button>
-                                <Button onClick={handleSubmit}>Create</Button>
+                                <Button variant="cancel" onClick={() => setOpenModal(false)}>Չեղարկել</Button>
+                                <Button onClick={handleSubmit}>Ստեղծել</Button>
                             </div>
                         </DialogPanel>
                     </TransitionChild>

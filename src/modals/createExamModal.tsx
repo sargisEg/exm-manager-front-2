@@ -1,8 +1,10 @@
 import {
     Dialog,
     DialogPanel,
-    DialogTitle, Listbox,
-    ListboxButton, ListboxOption,
+    DialogTitle,
+    Listbox,
+    ListboxButton,
+    ListboxOption,
     ListboxOptions,
     Transition,
     TransitionChild
@@ -14,7 +16,7 @@ import {CreateExamRequest, ExamType, examTypeLabels, SubgroupResponse} from "../
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {Minimize} from "@mui/icons-material"
-import {addDays, addHours, addMinutes, getHours, getMinutes, getTime, setHours, setMinutes} from 'date-fns';
+import {addDays, addHours, addMinutes, setHours, setMinutes} from 'date-fns';
 
 interface CreateExamModalProps {
     open: boolean;
@@ -38,35 +40,35 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
 
     const handleSubmit = () => {
         if (!title.trim()) {
-            setError('Please enter a title.');
+            setError('Լրացրեք անվանումը։');
             return;
         }
         if (!location.trim()) {
-            setError('Please enter a location.');
+            setError('Լրացրեք վայրը։');
             return;
         }
         if (!subgroup) {
-            setError('Please enter a subgroup.');
+            setError('Լրացրեք ենթախումբը');
             return;
         }
         if (!date) {
-            setError('Please enter a date.');
+            setError('Լրացրեք ամսաթիվը');
             return;
         }
         if (!startTime) {
-            setError('Please enter a startTime.');
+            setError('Լրացրեք սկսելու ժամը');
             return;
         }
         if (!endTime) {
-            setError('Please enter a time.');
+            setError('Լրացրեք ավարտելու ժամը');
             return;
         }
         if (!maxPoints) {
-            setError('Please enter a max points.');
+            setError('Լրացրեք առավելագույն միավորները');
             return;
         }
         if (!type) {
-            setError('Please enter a type.');
+            setError('Լրացրեք քննության տեսակը');
             return;
         }
 
@@ -188,7 +190,7 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Ավելացնել նոր քննություն
+                                Ավելացնել Նոր Քննություն
                             </DialogTitle>
 
                             <div className="flex flex-col gap-4">
@@ -240,7 +242,7 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
                                     isClearable
                                     selected={date}
                                     onChange={(date) => setDate(date ? date : undefined)}
-                                    placeholderText="Date"
+                                    placeholderText="Ամսաթիվ"
                                     dateFormat="MMMM d, yyyy"
                                     minDate={addDays(new Date(), 3)}
                                     filterDate={isWeekday}
@@ -255,11 +257,11 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
                                             setStartTime(date ? date : undefined);
                                             setEndTime(undefined);
                                         }}
-                                        placeholderText="Start Time"
+                                        placeholderText="Սկիզբ"
                                         dateFormat="HH:mm"
                                         timeFormat="HH:mm"
                                         timeIntervals={5}
-                                        timeCaption="Time"
+                                        timeCaption="Ժամ"
                                         showTimeSelectOnly
                                         minTime={setHours(setMinutes(new Date(), 0), 8)}
                                         maxTime={setHours(setMinutes(new Date(), 0), 18)}
@@ -272,11 +274,11 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
                                         showTimeSelect
                                         selected={endTime}
                                         onChange={(date) => setEndTime(date ? date : undefined)}
-                                        placeholderText="End Time"
+                                        placeholderText="Ավարտ"
                                         dateFormat="HH:mm"
                                         timeFormat="HH:mm"
                                         timeIntervals={5}
-                                        timeCaption="ադսսադ"
+                                        timeCaption="Ժամ"
                                         showTimeSelectOnly
                                         minTime={startTime ? startTime : setHours(setMinutes(new Date(), 0), 8)}
                                         maxTime={setHours(setMinutes(new Date(), 0), 18)}
@@ -346,12 +348,12 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
                                     onClick={handleClose}
                                     variant="cancel"
                                 >
-                                    Cancel
+                                    Չեղարկել
                                 </Button>
                                 <Button
                                     onClick={handleSubmit}
                                 >
-                                    Create
+                                    Ստեղծել
                                 </Button>
                             </div>
                         </DialogPanel>

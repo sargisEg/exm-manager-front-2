@@ -1,18 +1,15 @@
-import {More, LockReset, PersonAddAlt1, PersonRemove} from '@mui/icons-material'
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination} from '@mui/material'
+import {LockReset, More, PersonAddAlt1, PersonRemove} from '@mui/icons-material'
+import {Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from '@mui/material'
 import {Button} from "../../components/button";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {CreateStudentRequest, CreateTeacherRequest, GroupResponse, Page, UserResponse} from "../../shared/models";
+import {CreateTeacherRequest, Page, UserResponse} from "../../shared/models";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
-import {Pagination} from "react-admin";
-import CreateStudentModal from "../../modals/createStudentModal";
 import CreateTeacherModal from "../../modals/createTeacherModal";
 import {DeleteTeacherModal} from "../../modals/deleteTeacherModal";
 
 export default function AdminTeachers() {
-    const [openModal, setOpenModal] = useState(false);
     const history = useNavigate();
     const [loading, setLoading] = useState(false);
     const [changed, setChanged] = useState<boolean>(false);
@@ -108,9 +105,9 @@ export default function AdminTeachers() {
                         component="div"
                         count={total}
                         page={page}
-                        onPageChange={(event, newPage) => setPage(newPage)}
+                        onPageChange={(_, newPage) => setPage(newPage)}
                         rowsPerPage={rowsPerPage}
-                        labelRowsPerPage="Տողեր քանակը էջում"
+                        labelRowsPerPage="Տողերի քանակը էջում"
                         labelDisplayedRows={({ page }) => `${page + 1}/${pageCount}`}
                         onRowsPerPageChange={(event) => {
                             setRowsPerPage(parseInt(event.target.value, 10));

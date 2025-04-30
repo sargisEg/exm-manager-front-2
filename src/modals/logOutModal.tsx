@@ -42,17 +42,17 @@ export const LogOutDialog = ({ open, setOpenModal }: { open: boolean; setOpenMod
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="flex justify-between items-center text-lg font-bold text-gray-900 mb-4">
-                                <span className="text-gray-900">Log out?</span>
+                                <span className="text-gray-900">Դուրս գալ</span>
                                 <CloseIcon onClick={() => setOpenModal(false)} className="cursor-pointer text-gray-900" />
                             </DialogTitle>
 
                             <Description className="mt-2 text-sm text-gray-900">
-                                Are you sure that you want to log out?
+                                Ուզու՞մ եք դուրս գալ
                             </Description>
 
                             <div className="mt-6 flex justify-end gap-4">
-                                <Button variant="cancel" onClick={() => setOpenModal(false)}>Cancel</Button>
-                                <Button onClick={handleLogout}>Log Out</Button>
+                                <Button variant="cancel" onClick={() => setOpenModal(false)}>Չեղարկել</Button>
+                                <Button onClick={handleLogout}>Դուրս գալ</Button>
                             </div>
                         </DialogPanel>
                     </TransitionChild>

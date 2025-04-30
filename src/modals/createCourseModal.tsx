@@ -39,11 +39,11 @@ export default function CreateCourseModal({open, setOpenModal, onCreate}: Create
 
     const handleSubmit = () => {
         if (!name.trim()) {
-            setError('Name is required.');
+            setError('Լրացրեք ենթախմբի անունը։');
             return;
         }
         if (!selectedTeacher) {
-            setError('Teacher is required.');
+            setError('Ընտրեք դասախոս։');
             return;
         }
 
@@ -88,13 +88,13 @@ export default function CreateCourseModal({open, setOpenModal, onCreate}: Create
                     >
                         <DialogPanel className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
                             <DialogTitle className="text-lg font-bold text-gray-900 mb-4">
-                                Create New Course
+                                Ստեղծել Նոր Դասընթաց
                             </DialogTitle>
                             <div className="flex flex-col gap-4">
                                 <Input
                                     required
                                     type="text"
-                                    placeholder="Name"
+                                    placeholder="Անվանում"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="bg-[#f9f9f9] text-black"
@@ -105,7 +105,7 @@ export default function CreateCourseModal({open, setOpenModal, onCreate}: Create
                                             className="w-full bg-[#f9f9f9] text-black border border-gray-300 rounded-md px-3 py-2 text-left focus:outline-none focus:ring-2 focus:ring-[#1B84FF] focus:border-[#1B84FF]">
                                             {selectedTeacher
                                                 ? selectedTeacher.fullName
-                                                : <span className="text-gray-500">Select a teacher…</span>}
+                                                : <span className="text-gray-500">Ընտրեք դասախոս…</span>}
                                         </ListboxButton>
                                         <Transition
                                             as={Fragment}
@@ -139,10 +139,10 @@ export default function CreateCourseModal({open, setOpenModal, onCreate}: Create
                             }
                             <div className="mt-6 flex justify-end gap-4">
                                 <Button onClick={handleClose} variant="cancel">
-                                    Cancel
+                                    Չեղարկել
                                 </Button>
                                 <Button type="submit" onClick={handleSubmit}>
-                                    Create
+                                    Ստեղծել
                                 </Button>
                             </div>
                         </DialogPanel>

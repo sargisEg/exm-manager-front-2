@@ -33,7 +33,7 @@ const SettingsMenuItem = ({setOpenModal}: { setOpenModal: (open: boolean) => voi
                     setOpenModal(true);
                 }}
             >
-                <ListItemText style={{padding: '0'}} className='nav-button'>Log out</ListItemText>
+                <ListItemText style={{padding: '0'}} className='nav-button'>Դուրս գալ</ListItemText>
             </MenuItem>
         </div>
     );
@@ -70,7 +70,7 @@ export const Header = (props: any) => {
                 return err.response;
             })
         }
-    }, []);
+    }, [name, role]);
 
     return (
         <>
