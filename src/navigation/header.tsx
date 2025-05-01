@@ -4,29 +4,23 @@ import DownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import {LastPageSharp} from '@mui/icons-material';
 import {useEffect, useState} from 'react';
-import {useNavigate} from 'react-router';
 import {LogOutDialog} from '../modals/logOutModal';
 import {Link} from 'react-router-dom';
 import axios from "axios";
+import {roleLabels} from "../shared/models";
 
 const SettingsMenuItem = ({setOpenModal}: { setOpenModal: (open: boolean) => void }) => {
     const {onClose}: any = useUserMenu();
-    const navigate = useNavigate();
-
-    const handleNavigation = (path: string) => {
-        navigate(path);
-    };
-
 
     return (
         <div>
-            <MenuItem
-                onClick={() => {
-                    handleNavigation('/profile')
-                }}
-            >
-                <ListItemText style={{padding: '0'}} className='nav-button '>Profile</ListItemText>
-            </MenuItem>
+            {/*<MenuItem*/}
+            {/*    onClick={() => {*/}
+            {/*        handleNavigation('/profile')*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <ListItemText style={{padding: '0'}} className='nav-button '>Profile</ListItemText>*/}
+            {/*</MenuItem>*/}
             <MenuItem
                 onClick={() => {
                     onClose();
@@ -82,7 +76,7 @@ export const Header = (props: any) => {
                         <div className='nav-user-block'>
                             <>
                                 <p className='name'>{name}</p>
-                                <p className='role'>{role?.toLowerCase()}</p>
+                                <p className='role'>{roleLabels[role?role:'']}</p>
                             </>
                         </div>
                         <UserMenu className='user-menu' icon={<DownIcon style={{

@@ -1,37 +1,10 @@
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/card";
-import {
-    Apartment,
-    Person,
-    Group,
-    School,
-    Clear,
-    Add,
-    LockReset,
-    PersonRemove,
-    GroupRemove,
-    PersonAddAlt1, GroupAdd
-} from '@mui/icons-material'
-import {ExpandMore} from "@mui/icons-material";
-import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react'
-import {Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper} from '@mui/material'
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {
-    CourseResponse,
-    CreateStudentRequest,
-    GroupResponse,
-    StudentResponse,
-    SubgroupResponse
-} from "../../shared/models";
+import {CourseResponse, GroupResponse, StudentResponse, SubgroupResponse} from "../../shared/models";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
-import CreateCourseModal from "../../modals/createCourseModal";
-import {DeleteCourseModal} from "../../modals/deleteCourseModal";
-import CreateStudentModal from "../../modals/createStudentModal";
-import {DeleteStudentModal} from "../../modals/deleteStudentModal";
-import {CreateSubgroupModal} from "../../modals/createSubgroupModal";
-import {DeleteSubgroupModal} from "../../modals/deleteSubgroupModal";
-import {Button} from "../../components/button";
 
 export default function TeacherGroupDetails() {
     const {groupId} = useParams();

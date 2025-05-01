@@ -77,8 +77,8 @@ export default function CreateExamModal({open, setOpenModal, subgroups, courseId
             location: location,
             courseId: courseId,
             subgroupId: subgroup.id,
-            startDate: addHours(addMinutes(date, startTime.getMinutes()), startTime.getHours()).getTime(),
-            endDate: addHours(addMinutes(date, endTime.getMinutes()), endTime.getHours()).getTime(),
+            startDate: addHours(addMinutes(date.setHours(0,0,0), startTime.getMinutes()), startTime.getHours()).getTime(),
+            endDate: addHours(addMinutes(date.setHours(0,0,0), endTime.getMinutes()), endTime.getHours()).getTime(),
             maxPoints: maxPoints,
             type: type
         };

@@ -1,5 +1,4 @@
 import {JwtPayload} from "jwt-decode";
-import {number} from "react-admin";
 
 export enum UserRole {
     STUDENT = "STUDENT",
@@ -24,6 +23,12 @@ export const examTypeLabels: Record<ExamType, string> = {
     [ExamType.MIDTERM]: 'Միջանկյալ',
     [ExamType.GENERAL]: 'Վերջնական',
     [ExamType.REPEAT]: 'Վերաքննություն',
+};
+
+export const roleLabels: Record<string, string> = {
+    'STUDENT': 'Ուսանող',
+    'TEACHER': 'Դասախոս',
+    'ADMIN': 'Ադմին',
 };
 
 export interface MyJwtPayload extends JwtPayload {

@@ -63,8 +63,8 @@ export default function UpdateExamModal({open, setOpenModal, onUpdate, exam}: Up
         const data: UpdateExamRequest = {
             title: title,
             location: location,
-            startDate: addHours(addMinutes(date, startTime.getMinutes()), startTime.getHours()).getTime(),
-            endDate: addHours(addMinutes(date, endTime.getMinutes()), endTime.getHours()).getTime(),
+            startDate: addHours(addMinutes(date.setHours(0,0,0), startTime.getMinutes()), startTime.getHours()).getTime(),
+            endDate: addHours(addMinutes(date.setHours(0,0,0), endTime.getMinutes()), endTime.getHours()).getTime(),
             maxPoints: maxPoints,
         };
 

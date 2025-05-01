@@ -3,7 +3,7 @@ import {Menu, useSidebarState} from 'react-admin';
 import {useMediaQuery} from '@mui/material';
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {AppsSharp as DashIcon, Book, CalendarMonth, Groups, HistoryEdu, Person} from '@mui/icons-material'
+import {AppsSharp as DashIcon, Book, CalendarMonth, Groups, ImportContacts, HistoryEdu, Person} from '@mui/icons-material'
 import SubMenu from "../util/subMenu";
 import axios from "axios";
 import {api} from "../shared/api";
@@ -56,7 +56,7 @@ export const MySidebar = () => {
                     localStorage.setItem("a_y", '' + response.data.academicYear);
                 })
         }
-    }, [isSmall]);
+    }, [academicYear, isSmall, role, setOpen]);
 
     return (
         <>
@@ -65,8 +65,8 @@ export const MySidebar = () => {
                     <Menu.Item to='/student/dashboard' onClick={(e) => {
                         e.preventDefault()
                         handleNavigation('/student/dashboard')
-                    }} primaryText={open ? 'Dashboard' : ''} leftIcon={<DashIcon className="scale-150"/>}/>
-                    <SubMenu primaryText='Courses' leftIcon={<Book/>}>
+                    }} primaryText={open ? 'Ցուցատախտակ' : ''} leftIcon={<DashIcon className="scale-150"/>}/>
+                    <SubMenu primaryText='Առարկաներ' leftIcon={<Book/>}>
                         {[...Array(parseInt(academicYear ? academicYear : '1'))].map((_, i) => (
                             <Menu.Item to={'/student/courses/' + (i+1)} onClick={(e) => {
                                 e.preventDefault()
@@ -77,23 +77,23 @@ export const MySidebar = () => {
                     <Menu.Item to='/student/exams' onClick={(e) => {
                         e.preventDefault()
                         handleNavigation('/student/exams')
-                    }} primaryText={open ? 'Exams' : ''} leftIcon={<HistoryEdu/>}/>
+                    }} primaryText={open ? 'Քննություններ' : ''} leftIcon={<HistoryEdu/>}/>
                 </Menu>
             }
             {role === 'TEACHER' &&
                 <Menu className='sideBar-block'>
-                    <Menu.Item to='/teacher/exams' onClick={(e) => {
+                    <Menu.Item to='/teacher/courses' onClick={(e) => {
                         e.preventDefault()
-                        handleNavigation('/teacher/exams')
-                    }} primaryText={open ? 'Exams' : ''} leftIcon={<HistoryEdu/>}/>
+                        handleNavigation('/teacher/courses')
+                    }} primaryText={open ? 'Առարկաներ' : ''} leftIcon={<ImportContacts/>}/>
                     <Menu.Item to='/teacher/calnedar' onClick={(e) => {
                         e.preventDefault()
                         handleNavigation('/teacher/calendar')
-                    }} primaryText={open ? 'Calendar' : ''} leftIcon={<CalendarMonth/>}/>
+                    }} primaryText={open ? 'Օրացույց' : ''} leftIcon={<CalendarMonth/>}/>
                     <Menu.Item to='/teacher/groups' onClick={(e) => {
                         e.preventDefault()
                         handleNavigation('/teacher/groups')
-                    }} primaryText={open ? 'Groups' : ''} leftIcon={<Groups/>}/>
+                    }} primaryText={open ? 'Խմբեր' : ''} leftIcon={<Groups/>}/>
                 </Menu>
             }
             {role === 'ADMIN' &&

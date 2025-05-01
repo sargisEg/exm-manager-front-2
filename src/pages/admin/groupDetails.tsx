@@ -1,15 +1,23 @@
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/card";
-import {Apartment, GroupAdd, GroupRemove, PersonRemove, Add, Clear, LockReset, PersonAddAlt1} from '@mui/icons-material'
-import {ExpandMore} from "@mui/icons-material";
+import {
+    Add,
+    Clear,
+    ExpandMore,
+    GroupAdd,
+    GroupRemove,
+    LockReset,
+    PersonAddAlt1,
+    PersonRemove
+} from '@mui/icons-material'
 import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react'
-import {Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper} from '@mui/material'
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@mui/material'
 import {Button} from "../../components/button";
 import {useParams} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import {api} from "../../shared/api";
 import {
     CourseResponse,
-    CreateGroupRequest, CreateStudentRequest,
+    CreateStudentRequest,
     GroupResponse,
     StudentResponse,
     SubgroupResponse

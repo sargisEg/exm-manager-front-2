@@ -1,13 +1,8 @@
 import { DataProvider } from "react-admin";
-import axios from "axios";
-import {useState} from "react";
-
-const API_URL = "/api"; // Adjust if your API prefix is different
 
 export const dataProvider: DataProvider = {
 
-    getList: async (resource, params) => {
-        const url = `${API_URL}/${resource}/v1`;
+    getList: async () => {
         const response = Response.error();
         const data = await response.json();
         return {
@@ -16,38 +11,32 @@ export const dataProvider: DataProvider = {
         };
     },
 
-    getOne: async (resource, params) => {
-        const url = `${API_URL}/${resource}/v1/${params.id}`;
+    getOne: async () => {
         const response = Response.error();
         const data = await response.json();
         return { data };
     },
 
-    create: async (resource, params) => {
-        const url = `${API_URL}/${resource}/v1`;
+    create: async () => {
         const response = Response.error();
         const data = await response.json();
         return { data };
     },
 
-    update: async (resource, params) => {
-        const url = `${API_URL}/${resource}/v1/${params.id}`;
+    update: async () => {
         const response = Response.error();
         const data = await response.json();
         return { data };
     },
 
-    delete: async (resource, params) => {
-        const url = `${API_URL}/${resource}/v1/${params.id}`;
+    delete: async () => {
         const response = Response.error();
         const data = await response.json();
         return { data };
     },
 
     // Optional for completeness
-    getMany: async (resource, params) => {
-        const query = params.ids.map(id => `id=${id}`).join("&");
-        const url = `${API_URL}/${resource}/v1?${query}`;
+    getMany: async () => {
         const response = Response.error();
         const data = await response.json();
         return { data };

@@ -1,11 +1,11 @@
 import {Card, CardHeader, CardTitle} from "../../components/card";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {CourseResponse, ExamResponse, ExamStatus} from "../../shared/models";
+import {CourseResponse} from "../../shared/models";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
 
-export default function TeacherExams() {
+export default function TeacherCourses() {
     const history = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -29,7 +29,7 @@ export default function TeacherExams() {
 
     const coursesData: Record<string, CourseResponse[]> = {};
 
-    courses.map((course: CourseResponse) => {
+    courses.forEach((course: CourseResponse) => {
         if (!coursesData[course.name]) {
             coursesData[course.name] = [];
         }
@@ -89,6 +89,7 @@ export default function TeacherExams() {
                                     ))
                                 }
                             </div>
+                            <hr className="mb-8 border-2"/>
                         </>
                     ))
                 }

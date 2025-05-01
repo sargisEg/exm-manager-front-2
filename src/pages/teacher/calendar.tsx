@@ -3,7 +3,6 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import {Card, CardContent, CardHeader, CardTitle} from "../../components/card";
 import Moment from 'moment';
-import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {api} from "../../shared/api";
 import {ExamResponse, ExamType, examTypeLabels} from "../../shared/models";
@@ -149,21 +148,27 @@ export default function TeacherCalendar() {
                                         </CardTitle>
                                     </CardHeader>
                                     <br/>
-                                    <CardContent>
+                                    <CardContent className="text-[#f9f9f9]">
                                         <div className="text-m font-medium">
-                                            Սկիզբ - {Moment(exam.startDate).format('DD-MM-YY HH:mm')}
+                                            <span className="font-bold">Ամսաթիվ</span> - {Moment(exam.startDate).format('DD.MM.YY')}
                                         </div>
                                         <div className="text-m font-medium">
-                                            Ավարտ - {Moment(exam.endDate).format('DD-MM-YY HH:mm')}
+                                            <span className="font-bold">Սկիզբ</span> - {Moment(exam.startDate).format('HH:mm')}
                                         </div>
                                         <div className="text-m font-medium">
-                                            Վայր - {exam.location}
+                                            <span className="font-bold">Ավարտ</span> - {Moment(exam.endDate).format('HH:mm')}
                                         </div>
                                         <div className="text-m font-medium">
-                                            Առարկա - {exam.course.name}
+                                            <span className="font-bold">Վայր</span> - {exam.location}
                                         </div>
                                         <div className="text-m font-medium">
-                                            Առավելագույն միավորներ - {exam.maxPoints}
+                                            <span className="font-bold">Առարկա</span> - {exam.course.name}
+                                        </div>
+                                        <div className="text-m font-medium">
+                                            <span className="font-bold">Ենթախումբ</span> - {exam.subgroup.name}
+                                        </div>
+                                        <div className="text-m font-medium">
+                                            <span className="font-bold">Առավելագույն միավորներ</span> - {exam.maxPoints}
                                         </div>
                                     </CardContent>
                                 </Card>

@@ -30,7 +30,7 @@ import Moment from "moment";
 import UpdateExamModal from "../../modals/updateExamModal";
 import {DeleteExamModal} from "../../modals/deleteExamModal";
 
-export default function TeacherExamDetails() {
+export default function TeacherCourseDetails() {
     const {courseId} = useParams();
     const history = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -289,7 +289,7 @@ export default function TeacherExamDetails() {
                                                             ❗️{exam.title}
                                                         </CardTitle>
                                                         <Button onClick={() => {
-                                                            history(`grade/${exam.id}`);
+                                                            history(`exmas/${exam.id}`);
                                                         }}>
                                                             <p>Գնահատել</p>
                                                             <ArrowForward/>

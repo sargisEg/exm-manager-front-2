@@ -1,17 +1,15 @@
 import {authProvider} from "../providers/authProvider";
 import {useState} from "react";
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useForm} from "react-hook-form";
-// import {showNotify} from '../util/notification';
 import {Card, CardContent, CardHeader, CardTitle} from "../components/card";
 import {Label} from "../components/label";
 import {Input} from "../components/imput";
 import {Button} from "../components/button";
-import {jwtDecode, JwtPayload} from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 import {MyJwtPayload} from "../shared/models";
 
 export default function AuthPage() {
-    const location = useLocation();
     const history = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -37,7 +35,7 @@ export default function AuthPage() {
                     history('/admin/groups', {replace: true});
                 }
                 if (decoded.role === 'TEACHER') {
-                    history('/teacher/exams', {replace: true});
+                    history('/teacher/courses', {replace: true});
                 }
                 if (decoded.role === 'STUDENT') {
                     history('/student/dashboard', {replace: true});

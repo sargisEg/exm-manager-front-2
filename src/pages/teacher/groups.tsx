@@ -1,15 +1,9 @@
-import {Card, CardContent, CardHeader, CardTitle} from "../../components/card";
-import {Apartment, Person, Group, School, Add} from '@mui/icons-material'
-import {ExpandMore} from "@mui/icons-material";
-import {Disclosure, DisclosureButton, DisclosurePanel} from '@headlessui/react'
-import {Table, TableContainer, TableHead, TableRow, TableCell, TableBody, Paper} from '@mui/material'
+import {Card, CardHeader, CardTitle} from "../../components/card";
 import {useNavigate} from "react-router-dom";
-import {CreateGroupRequest, GroupResponse} from "../../shared/models";
+import {GroupResponse} from "../../shared/models";
 import {useEffect, useState} from "react";
 import {api} from "../../shared/api";
 import LoadingPage from "../loading";
-import CreateGroupModal from "../../modals/createGroupModal";
-import {Button} from "../../components/button";
 
 export default function TeacherGroups() {
     const history = useNavigate();
@@ -31,7 +25,7 @@ export default function TeacherGroups() {
 
     const groupsData: Record<string, GroupResponse[]> = {};
 
-    groups.map((group: GroupResponse) => {
+    groups.forEach((group: GroupResponse) => {
         if (!groupsData[group.academicYear]) {
             groupsData[group.academicYear] = [];
         }
